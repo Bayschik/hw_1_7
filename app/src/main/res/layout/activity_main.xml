@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabIndicatorColor="#03A9F4"
-        app:tabIndicatorFullWidth="true"
+        app:tabIndicatorFullWidth="false"
         app:tabTextColor="#333333"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

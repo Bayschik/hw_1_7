@@ -2,28 +2,43 @@ package com.example.hw_1_7.cameras
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.view.isVisible
-import androidx.recyclerview.widget.RecyclerView.Adapter
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.bumptech.glide.Glide
 import com.example.hw_1_7.databinding.ItemCameraBinding
+import com.example.hw_1_7.response.camera.CameraSecond
 
-class CameraAdapter:Adapter<CameraAdapter.CameraViewHolder>() {
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CameraViewHolder {
-        return CameraViewHolder(ItemCameraBinding.inflate(LayoutInflater.from(parent.context), parent, false))
-    }
-
-    override fun getItemCount(): Int {
-        return 50
+class CameraAdapter: ListAdapter<CameraSecond.Data.Camera, CameraViewHolder>(
+    CameraDiffCallback()
+) {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): CameraViewHolder {
+        return CameraViewHolder(
+            ItemCameraBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: CameraViewHolder, position: Int) {
-        holder.bind(position)
+        holder.bind(getItem(position))
     }
+}
 
-    inner class CameraViewHolder(private val binding:ItemCameraBinding):ViewHolder(binding.root){
-        fun bind(position: Int) {
-            binding.tvRoomName.isVisible = position==0
-        }
+class CameraViewHolder(private val binding: ItemCameraBinding) : ViewHolder(binding.root) {
+    fun bind(position: CameraSecond.Data.Camera) {
+        binding.tvCamera.text = position.name
+        binding.tvRoomName.text = position.room
+        Glide.with(binding.imgRoom).load(position.snapshot).into(binding.imgRoom)
     }
+}
+
+class CameraDiffCallback : DiffUtil.ItemCallback<CameraSecond.Data.Camera>() {
+    override fun areContentsTheSame(oldItem: CameraSecond.Data.Camera, newItem: CameraSecond.Data.Camera) = oldItem.id == newItem.id
+    override fun areItemsTheSame(oldItem: CameraSecond.Data.Camera, newItem: CameraSecond.Data.Camera) = oldItem == newItem
 }

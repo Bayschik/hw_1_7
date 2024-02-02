@@ -1,14 +1,20 @@
 package com.example.hw_1_7.doors
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import com.example.hw_1_7.base.BaseFragment
 import com.example.hw_1_7.databinding.FragmentDoorsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-class DoorsFragment : Fragment() {
+@AndroidEntryPoint
+class DoorsFragment : BaseFragment() {
     private lateinit var binding:FragmentDoorsBinding
+    private val viewModel:DoorsViewModel by viewModels()
+    private val adapter = DoorsAdapter()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -20,7 +26,11 @@ class DoorsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = DoorsAdapter()
-        binding.doorsRecyclerView.adapter = adapter
+        viewModel.getDoors().stateHandler(
+            success = {
+                adapter.submitList(it)
+                binding.doorsRecyclerView.adapter = adapter
+            }
+        )
     }
 }

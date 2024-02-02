@@ -5,7 +5,9 @@ import android.os.Bundle
 import androidx.viewpager2.widget.ViewPager2
 import com.example.hw_1_7.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayout
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding:ActivityMainBinding
 
@@ -13,6 +15,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         val adapter = Adapter(this)
         binding.viewPager.adapter = adapter
 
