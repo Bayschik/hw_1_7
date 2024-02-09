@@ -1,4 +1,4 @@
-package com.example.hw_1_7.cameras
+package com.example.hw_1_7.presentation.cameras
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,8 +11,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class CameraFragment : BaseFragment() {
-    private lateinit var binding:FragmentCameraBinding
-    private val viewModel:CameraViewModel by viewModels()
+    private lateinit var binding: FragmentCameraBinding
+    private val viewModel: CameraViewModel by viewModels()
     private val adapter = CameraAdapter()
 
     override fun onCreateView(
@@ -25,10 +25,10 @@ class CameraFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.recyclerView.adapter = adapter
         viewModel.getCameras().stateHandler(
             success = {
-                adapter.submitList(it)
-                binding.recyclerView.adapter = adapter
+                adapter.submitList(it.data.cameras)
             }
         )
     }

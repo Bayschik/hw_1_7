@@ -1,4 +1,4 @@
-package com.example.hw_1_7.response.door
+package com.example.hw_1_7.data.response.door
 
 import com.google.gson.annotations.SerializedName
 
@@ -7,7 +7,7 @@ data class DoorModel(
     val data: List<Data>,
     @SerializedName("success")
     val success: Boolean
-) {
+){
     data class Data(
         @SerializedName("favorites")
         val favorites: Boolean,

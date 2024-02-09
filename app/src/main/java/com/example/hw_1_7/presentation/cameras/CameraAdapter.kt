@@ -1,13 +1,13 @@
-package com.example.hw_1_7.cameras
+package com.example.hw_1_7.presentation.cameras
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.bumptech.glide.Glide
+import coil.load
 import com.example.hw_1_7.databinding.ItemCameraBinding
-import com.example.hw_1_7.response.camera.CameraSecond
+import com.example.hw_1_7.data.response.camera.CameraSecond
 
 class CameraAdapter: ListAdapter<CameraSecond.Data.Camera, CameraViewHolder>(
     CameraDiffCallback()
@@ -31,10 +31,10 @@ class CameraAdapter: ListAdapter<CameraSecond.Data.Camera, CameraViewHolder>(
 }
 
 class CameraViewHolder(private val binding: ItemCameraBinding) : ViewHolder(binding.root) {
-    fun bind(position: CameraSecond.Data.Camera) {
-        binding.tvCamera.text = position.name
-        binding.tvRoomName.text = position.room
-        Glide.with(binding.imgRoom).load(position.snapshot).into(binding.imgRoom)
+    fun bind(position: CameraSecond.Data.Camera) = with(binding){
+        tvCamera.text = position.name
+        tvRoomName.text = position.room
+        imgRoom.load(position.snapshot)
     }
 }
 

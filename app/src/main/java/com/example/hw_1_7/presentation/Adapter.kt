@@ -1,10 +1,10 @@
-package com.example.hw_1_7
+package com.example.hw_1_7.presentation
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.hw_1_7.cameras.CameraFragment
-import com.example.hw_1_7.doors.DoorsFragment
+import com.example.hw_1_7.presentation.cameras.CameraFragment
+import com.example.hw_1_7.presentation.doors.DoorsFragment
 
 class Adapter(fragment: FragmentActivity): FragmentStateAdapter(fragment) {
 

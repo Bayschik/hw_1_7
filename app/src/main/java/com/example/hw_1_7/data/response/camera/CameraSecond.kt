@@ -1,15 +1,13 @@
-package com.example.hw_1_7.response.camera
-
-
+package com.example.hw_1_7.data.response.camera
 
 data class CameraSecond(
-    val `data`: List<Data>,
+    val `data`: Data,
     val success: Boolean
-) {
+){
     data class Data(
         val cameras: List<Camera>,
-        val room: String
-    ) {
+        val room: List<String>
+    ){
         data class Camera(
             val favorites: Boolean,
             val id: Int,
@@ -20,3 +18,4 @@ data class CameraSecond(
         )
     }
 }
+

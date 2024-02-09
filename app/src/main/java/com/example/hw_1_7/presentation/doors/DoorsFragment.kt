@@ -1,4 +1,4 @@
-package com.example.hw_1_7.doors
+package com.example.hw_1_7.presentation.doors
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,7 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class DoorsFragment : BaseFragment() {
     private lateinit var binding:FragmentDoorsBinding
-    private val viewModel:DoorsViewModel by viewModels()
+    private val viewModel: DoorsViewModel by viewModels()
     private val adapter = DoorsAdapter()
 
 
@@ -26,10 +26,10 @@ class DoorsFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.doorsRecyclerView.adapter = adapter
         viewModel.getDoors().stateHandler(
             success = {
-                adapter.submitList(it)
-                binding.doorsRecyclerView.adapter = adapter
+                adapter.setDataAdapter(it.data)
             }
         )
     }
