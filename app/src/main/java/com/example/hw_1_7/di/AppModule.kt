@@ -1,6 +1,9 @@
 package com.example.hw_1_7.di
 
 import com.example.hw_1_7.data.remote.ApiService
+import com.example.hw_1_7.data.repositories.Repository
+import com.example.hw_1_7.domain.repositories.CamerasRepository
+import com.example.hw_1_7.domain.repositories.DoorsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,10 +33,10 @@ class AppModule {
     @Singleton
     fun provideOkHttpClient(interceptor:HttpLoggingInterceptor):OkHttpClient{
         return OkHttpClient.Builder()
-            .writeTimeout(20, TimeUnit.SECONDS)
-            .readTimeout(20, TimeUnit.SECONDS)
-            .connectTimeout(20, TimeUnit.SECONDS)
-            .callTimeout(20, TimeUnit.SECONDS)
+            .writeTimeout(20, TimeUnit.MILLISECONDS)
+            .readTimeout(20, TimeUnit.MILLISECONDS)
+            .connectTimeout(20, TimeUnit.MILLISECONDS)
+            .callTimeout(20, TimeUnit.MILLISECONDS)
             .addInterceptor(interceptor)
             .build()
     }
@@ -49,5 +52,15 @@ class AppModule {
     @Provides
     fun provideApiService(retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)
+    }
+
+    @Provides
+    fun provideCamerasRepository(apiService: ApiService): CamerasRepository {
+        return Repository(apiService)
+    }
+
+    @Provides
+    fun provideDoorsRepository(apiService: ApiService): DoorsRepository {
+        return Repository(apiService)
     }
 }
