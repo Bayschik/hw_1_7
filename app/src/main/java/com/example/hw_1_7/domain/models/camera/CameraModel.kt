@@ -1,11 +1,12 @@
-package com.example.hw_1_7.data.response.camera
+package com.example.hw_1_7.domain.models.camera
 
-data class CameraSecond(
-    val `data`: Data,
-    val success: Boolean
+data class CameraModel(
+    var id:Int ?= null,
+    var data: Data,
+    var success: Boolean
 ){
     data class Data(
-        val cameras: List<Camera>,
+        var cameras: List<Camera>,
         val room: List<String>
     ){
         data class Camera(

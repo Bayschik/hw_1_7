@@ -6,7 +6,6 @@ import com.example.hw_1_7.data.Resource
 import com.example.hw_1_7.utils.showToast
 
 abstract class BaseFragment:Fragment() {
-
     fun <T> LiveData<Resource<T>>.stateHandler(
         success:(data:T) -> Unit,
         state: ((res:Resource<T>)->Unit) ?= null
@@ -27,5 +26,4 @@ abstract class BaseFragment:Fragment() {
             }
         }
     }
-
 }

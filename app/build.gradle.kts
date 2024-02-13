@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
-
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -68,6 +66,14 @@ dependencies {
     implementation ("com.squareup.okhttp3:logging-interceptor:4.12.0")
     //Coil
     implementation("io.coil-kt:coil:2.5.0")
+    //Pull-to-Refresh
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    // Room
+    val room_version = "2.6.1"
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    // To use Kotlin annotation processing tool (kapt)
+    kapt("androidx.room:room-compiler:$room_version")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")

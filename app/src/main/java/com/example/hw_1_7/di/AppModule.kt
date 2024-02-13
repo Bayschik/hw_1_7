@@ -1,9 +1,18 @@
 package com.example.hw_1_7.di
 
+import android.content.Context
+import androidx.room.Room
+import com.example.hw_1_7.data.local.HomeDatabase
 import com.example.hw_1_7.data.remote.ApiService
+import com.example.hw_1_7.data.repositories.Repository
+import com.example.hw_1_7.domain.repositories.CamerasRepository
+import com.example.hw_1_7.domain.repositories.DoorsRepository
+import com.example.hw_1_7.domain.usecases.GetCamerasUseCase
+import com.example.hw_1_7.domain.usecases.GetDoorsUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -18,7 +27,7 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient):Retrofit{
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .baseUrl("https://cars.cprogroup.ru/api/rubetek/")
             .addConverterFactory(GsonConverterFactory.create())
@@ -28,7 +37,7 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(interceptor:HttpLoggingInterceptor):OkHttpClient{
+    fun provideOkHttpClient(interceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
             .writeTimeout(20, TimeUnit.SECONDS)
             .readTimeout(20, TimeUnit.SECONDS)
@@ -40,7 +49,7 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideLoggingInterceptor():HttpLoggingInterceptor{
+    fun provideLoggingInterceptor(): HttpLoggingInterceptor {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
         return interceptor
@@ -50,4 +59,39 @@ class AppModule {
     fun provideApiService(retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)
     }
+
+    @Provides
+    fun provideCamerasRepository(apiService: ApiService): CamerasRepository {
+        return Repository(apiService)
+    }
+
+    @Provides
+    fun provideDoorsRepository(apiService: ApiService): DoorsRepository {
+        return Repository(apiService)
+    }
+
+    @Provides
+    fun provideGetCamerasUseCase(camerasRepository: CamerasRepository) =
+        GetCamerasUseCase(camerasRepository)
+
+    @Provides
+    fun provideGetDoorsUseCase(doorsRepository: DoorsRepository) = GetDoorsUseCase(doorsRepository)
+
+    @Provides
+    fun provideRoomDatabase(
+        @ApplicationContext context: Context
+    ) :HomeDatabase{
+        return Room.databaseBuilder(
+            context,
+            HomeDatabase::class.java,
+            "home_database"
+        ).allowMainThreadQueries().build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideHomeDao(
+        roomDatabase: HomeDatabase
+    ) = roomDatabase.homeDao()
+
 }

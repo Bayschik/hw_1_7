@@ -1,4 +1,4 @@
-package com.example.hw_1_7.data.response.door
+package com.example.hw_1_7.domain.models.door
 
 import com.google.gson.annotations.SerializedName
 
