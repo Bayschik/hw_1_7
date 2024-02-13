@@ -1,6 +1,9 @@
 package com.example.hw_1_7.di
 
 import com.example.hw_1_7.data.remote.ApiService
+import com.example.hw_1_7.data.repositories.Repository
+import com.example.hw_1_7.domain.repositories.CamerasRepository
+import com.example.hw_1_7.domain.repositories.DoorsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -50,4 +53,16 @@ class AppModule {
     fun provideApiService(retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)
     }
+
+    @Provides
+    fun provideCamerasRepository(apiService: ApiService): CamerasRepository{
+        return Repository(apiService)
+    }
+
+    @Provides
+    fun provideDoorsRepository(apiService: ApiService): DoorsRepository {
+        return Repository(apiService)
+    }
+
+
 }
