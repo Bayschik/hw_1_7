@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.hw_1_7.base.BaseFragment
 import com.example.hw_1_7.data.local.HomeDao
-import com.example.hw_1_7.data.local.CameraData
+import com.example.hw_1_7.data.local.models.CameraData
 import com.example.hw_1_7.databinding.FragmentCameraBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject

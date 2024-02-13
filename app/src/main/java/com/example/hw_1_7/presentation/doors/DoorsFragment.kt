@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.hw_1_7.base.BaseFragment
 import com.example.hw_1_7.data.local.HomeDao
-import com.example.hw_1_7.data.local.DoorData
+import com.example.hw_1_7.data.local.models.DoorData
 import com.example.hw_1_7.databinding.FragmentDoorsBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject

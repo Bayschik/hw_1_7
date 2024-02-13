@@ -1,4 +1,4 @@
-package com.example.hw_1_7.data.local
+package com.example.hw_1_7.data.local.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
