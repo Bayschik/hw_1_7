@@ -17,7 +17,6 @@ class CameraFragment : BaseFragment() {
     private lateinit var binding: FragmentCameraBinding
     private val viewModel: CameraViewModel by viewModels()
     private val adapter = CameraAdapter()
-
     @Inject
     lateinit var dao: HomeDao
 
