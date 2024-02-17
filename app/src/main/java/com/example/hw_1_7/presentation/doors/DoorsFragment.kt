@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
-import com.example.hw_1_7.base.BaseFragment
 import com.example.hw_1_7.data.local.HomeDao
 import com.example.hw_1_7.data.local.models.DoorData
 import com.example.hw_1_7.databinding.FragmentDoorsBinding
@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class DoorsFragment : BaseFragment() {
+class DoorsFragment :Fragment() {
     private lateinit var binding: FragmentDoorsBinding
     private val viewModel: DoorsViewModel by viewModels()
     private val adapter = DoorsAdapter()

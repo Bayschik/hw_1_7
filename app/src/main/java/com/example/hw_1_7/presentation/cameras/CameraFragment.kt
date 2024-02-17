@@ -5,12 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
-import com.example.hw_1_7.base.BaseFragment
 import com.example.hw_1_7.data.local.HomeDao
-import com.example.hw_1_7.data.local.models.CameraData
 import com.example.hw_1_7.data.local.models.DoorData
 import com.example.hw_1_7.databinding.FragmentCameraBinding
 import com.example.hw_1_7.domain.utils.UiState
@@ -19,7 +18,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class CameraFragment : BaseFragment() {
+class CameraFragment :Fragment() {
     private lateinit var binding: FragmentCameraBinding
     private val viewModel: CameraViewModel by viewModels()
     private val adapter = CameraAdapter()

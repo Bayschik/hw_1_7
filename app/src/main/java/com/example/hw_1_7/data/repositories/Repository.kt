@@ -1,6 +1,5 @@
 package com.example.hw_1_7.data.repositories
 
-import com.example.hw_1_7.base.BaseRepository
 import com.example.hw_1_7.data.remote.ApiService
 import com.example.hw_1_7.data.utils.Resource
 import com.example.hw_1_7.data.utils.mapToCameraModel
@@ -12,8 +11,7 @@ import com.example.hw_1_7.domain.repositories.DoorsRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class Repository(private val apiService: ApiService) : CamerasRepository, DoorsRepository,
-    BaseRepository() {
+class Repository(private val apiService: ApiService) : CamerasRepository, DoorsRepository {
 
     override suspend fun getCameras(): Flow<Resource<CameraModel>> =
         flow {
