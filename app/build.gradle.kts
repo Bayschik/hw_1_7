@@ -51,6 +51,8 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:2.48.1")
     //Coroutine
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.10")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
     // ViewModel
     implementation ("androidx.core:core-ktx:1.12.0")
     implementation ("androidx.fragment:fragment-ktx:1.6.2")

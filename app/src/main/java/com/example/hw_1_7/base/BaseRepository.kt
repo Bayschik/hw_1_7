@@ -3,7 +3,7 @@ package com.example.hw_1_7.base
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
-import com.example.hw_1_7.data.Resource
+import com.example.hw_1_7.data.utils.Resource
 import kotlinx.coroutines.Dispatchers
 
 abstract class BaseRepository {

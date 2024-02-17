@@ -2,13 +2,13 @@ package com.example.hw_1_7.base
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
-import com.example.hw_1_7.data.Resource
+import com.example.hw_1_7.data.utils.Resource
 import com.example.hw_1_7.utils.showToast
 
 abstract class BaseFragment:Fragment() {
     fun <T> LiveData<Resource<T>>.stateHandler(
         success:(data:T) -> Unit,
-        state: ((res:Resource<T>)->Unit) ?= null
+        state: ((res: Resource<T>)->Unit) ?= null
     ){
         observe(this@BaseFragment){res->
             state?.invoke(res)
